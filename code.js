@@ -1,4 +1,3 @@
-<script type="text/javascript">
   var ctx = canvas.getContext('2d');
   var x = 455;
   var motion;
@@ -37,4 +36,3 @@
     }
     move();
   }
-</script>
