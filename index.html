@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,45 +5,65 @@
     <title>The Game</title>
   </head>
 <button type="button" id = "startButton">Start</button>
-<button type="button" id = "changeButton">Change</button>
 <button type="button" id = "stopButton">Stop</button>
+<div id  = "score">
+  Score : 0
+</div>
 <canvas id ="canvas" width="5000" height="5000"></canvas>
 <script>
-var ctx = canvas.getContext('2d');
+  var moving = true;
+  var start = 0;
+  var ctx = canvas.getContext('2d');
   var x = 455;
+  var score = 0;
   var motion;
   var direction = "right";
   ctx.strokeRect(450,50,1000,800);
   ctx.strokeRect(x,55,50,50);
   document.getElementById('startButton').addEventListener("click",move);
   document.getElementById('stopButton').addEventListener("click",stop);
-  document.getElementById('changeButton').addEventListener("click",change);
+  doucment.body.addEventListener("click",stop,true);
   function move(){
+    if (moving==true||start==0){
+      start++;
     if(direction=="right"){
     motion = setInterval(function () {
       ctx.clearRect(x-2,53,56,56);
       x+=10;
       ctx.strokeRect(x,55,50,50);
+      if (x>=1380){
+        score++;
+        change();
+        document.getElementById("score").innerHTML = "Score: "+score;
+      }
     }, 10);
   }
   else{
   motion = setInterval(function () {
-    ctx.clearRect(x,53,56,56);
+    ctx.clearRect(x-2,53,56,56);
     x-=10;
     ctx.strokeRect(x,55,50,50);
+    if (x<=460){
+      change();
+      score++;
+      document.getElementById("score").innerHTML = "Score: "+score;
+    }
   }, 10);
-}
+    }
+  }
 }
   function stop(){
     clearInterval(motion);
+    moving = false;
   }
   function change(){
     stop();
+    moving = true;
     if (direction=="right"){
       direction = "left";
     }
     else{
-      direction = "right;
+      direction = "right";
     }
     move();
   }
