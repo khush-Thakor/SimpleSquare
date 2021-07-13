@@ -11,14 +11,13 @@
 <canvas id ="canvas" width="5000" height="5000"></canvas>
 <script>
   var ctx = canvas.getContext('2d');
-  var x = 455;
+  var x = 255;
   var score = 0;
   var motion;
   var direction = "right";
   var lineLocation = 450;
-  drawLine();
   ctx.lineWidth = 5;
-  ctx.strokeRect(450,50,1000,800);
+  ctx.strokeRect(250,50,1000,500);
   ctx.lineWidth = 1;
   ctx.strokeRect(x,55,50,50);
   document.getElementById('startButton').addEventListener("click",move);
@@ -29,12 +28,9 @@
       ctx.clearRect(x-2,53,56,56);
       x+=10;
       ctx.strokeRect(x,55,50,50);
-      if (x>=1380){
-        score++;
-        change();
-        document.getElementById("score").innerHTML = "Score: "+score;
+      if (x>=1190){
+        clearInterval(motion);
       }
-      clearCanvas();
     }, 10);
   }
   else{
@@ -42,11 +38,6 @@
     ctx.clearRect(x-2,53,56,56);
     x-=10;
     ctx.strokeRect(x,55,50,50);
-    if (x<=460){
-      change();
-      score++;
-      document.getElementById("score").innerHTML = "Score: "+score;
-    }
   }, 10);
     }
 }
@@ -56,7 +47,6 @@
   }
   function change(){
     stop();
-    clearCanvas();
     moving = true;
     if (direction=="right"){
       direction = "left";
@@ -66,18 +56,6 @@
     }
     move();
   }
-  function drawLine(){
-    ctx.strokeStyle = 'red';
-    ctx.lineWidth = 5;
-    ctx.beginPath();
-    ctx.moveTo(x,50);
-    ctx.lineTo(x,850);
-    ctx.stroke();
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = 'black';
-  }
-  function clearCanvas(){
-    ctx.clearReact(0,0,canvas.width,cavas.height);
-  }
+
 </script>
 </html>
