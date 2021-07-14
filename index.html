@@ -7,37 +7,44 @@
 <div id  = "score">
   Score : 0
 </div>
-<button type="button" name="button">Click</button>
+<button type="button" id = 'changeButton'>Click</button>
 <canvas id ="canvas" width="5000" height="5000"></canvas>
 <script>
   var ctx = canvas.getContext('2d');
-  var x = 255;
+  var x = 257;
   var score = 0;
   var motion;
   var direction = "right";
   var lineLocation = 450;
   ctx.lineWidth = 5;
   ctx.strokeRect(250,50,1000,500);
-  ctx.lineWidth = 1;
-  ctx.strokeRect(x,55,50,50);
+  ctx.lineWidth = 3;
+  ctx.strokeRect(x,57,50,50);
+  drawLine(500,50,500,550);
   document.getElementById('startButton').addEventListener("click",move);
+  document.getElementById('changeButton').addEventListener("click",change);
+  ctx.clearRect(0,0,canvas.length,canvas.heigth);
   function move(){
     document.getElementById('startButton').style.visibility='hidden';
     if(direction=="right"){
     motion = setInterval(function () {
-      ctx.clearRect(x-2,53,56,56);
+      ctx.clearRect(x-4,53,56,56);
       x+=10;
-      ctx.strokeRect(x,55,50,50);
-      if (x>=1190){
+      ctx.strokeRect(x,57,50,50);
+      if (x>=1185){
         clearInterval(motion);
+        clearCanvas();
       }
     }, 10);
   }
   else{
   motion = setInterval(function () {
-    ctx.clearRect(x-2,53,56,56);
+    ctx.clearRect(x-4,53,56,56);
     x-=10;
-    ctx.strokeRect(x,55,50,50);
+    ctx.strokeRect(x,57,50,50);
+    if (x<=260){
+      clearInterval(motion);
+    }
   }, 10);
     }
 }
@@ -56,6 +63,16 @@
     }
     move();
   }
-
+  function drawLine(x,y,x2,y2){
+    ctx.lineWidth = 7;
+    ctx.beginPath();
+    ctx.moveTo(x,y);
+    ctx.lineTo(x2,y2);
+    ctx.stroke();
+    ctx.lineWidth = 3;
+  }
+  function clearCanvas(){
+    ctx.clearRect(0,0,canvas.length,canvas.heigth);
+  }
 </script>
 </html>
