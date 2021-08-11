@@ -1,4 +1,3 @@
-<script>
   const ctx = canvas.getContext('2d');
   var x = 257;
   var score = 0;
@@ -73,4 +72,3 @@
     document.getElementById('gameOverText').innerHTML = "Game Over";
     document.getElementById('changeButton').style.visibility='hidden'
   }
-</script>
