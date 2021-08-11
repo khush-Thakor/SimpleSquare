@@ -72,5 +72,5 @@
     clearInterval(motion);
     document.getElementById('gameOverText').innerHTML = "Game Over";
     document.getElementById('changeButton').style.visibility='hidden'
- 
   }
+<\script>
