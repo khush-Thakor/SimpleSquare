@@ -7,7 +7,7 @@
   var w = 65;
   var lineX = 0;
   ctx.lineWidth = 5;
-  ctx.strokeRect(250,50,1000,w);
+  ctx.strokeRect(250,50,1000,65);
   ctx.lineWidth = 3;
   ctx.strokeRect(x,57,50,50);
   randomLine(315,625);
@@ -56,16 +56,24 @@
     if (direction=="right"){
       direction = "left";
       if(x>=lineX){
-      score++;
+        score++;
+        stop();
+        ctx.lineWidth = 5;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeRect(250,50,1000,65);
+        randomLine(335,605);
     }
-      randomLine(335,605);
-    }
+  }
     else{
       direction = "right";
       if(x<=lineX){
       score++;
-      }
+      stop();
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.lineWidth = 5;
+      ctx.strokeRect(250,50,1000,65);
       randomLine(605,1115);
+      }
     }
     move();
     document.getElementById('score').innerHTML = "Score: "+score;
@@ -77,9 +85,6 @@
     ctx.lineTo(x2,y2);
     ctx.stroke();
     ctx.lineWidth = 3;
-  }
-  function clearCanvas(){
-    ctx.clearRect(0,0,canvas.length,canvas.heigth);
   }
   function gameOver(){
     clearInterval(motion);
