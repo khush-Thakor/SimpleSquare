@@ -94,7 +94,7 @@ const ctx = canvas.getContext('2d');
  }
  function gameOver(){
    clearInterval(motion);
-   document.getElementById('gameOverText').innerHTML = "Game Over";
+   document.getElementById('gameOverText').style.visibility = "visible";
    document.getElementById('changeButton').style.visibility='hidden'
     document.getElementById("restartButton").style.visibility = 'visible';
  }
