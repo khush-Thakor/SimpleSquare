@@ -18,6 +18,7 @@ const ctx = canvas.getContext('2d');
  document.getElementById('restartButton').addEventListener("click",restart);
  document.getElementById('changeButton').style.visibility='hidden';
  document.getElementById("restartButton").style.visibility = 'hidden';
+document.getElementById("gameOverText").style.visibility = 'hidden';
  function move(){
    document.getElementById('startButton').style.visibility='hidden';
    document.getElementById('changeButton').style.visibility='visible';
