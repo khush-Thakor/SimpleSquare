@@ -8,7 +8,6 @@ const ctx = canvas.getContext('2d');
  var lineX = 0;
  var strikeC = 0;
  var s = 0;
-
  ctx.lineWidth = 5;
  ctx.strokeRect(250,50,1000,65);
  ctx.lineWidth = 3;
