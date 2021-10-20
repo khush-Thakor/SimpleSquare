@@ -6,6 +6,9 @@ const ctx = canvas.getContext('2d');
  var lineLocation = 450;
  var w = 65;
  var lineX = 0;
+ var strikeC = 0;
+ var s = 0;
+
  ctx.lineWidth = 5;
  ctx.strokeRect(250,50,1000,65);
  ctx.lineWidth = 3;
@@ -18,7 +21,7 @@ const ctx = canvas.getContext('2d');
  document.getElementById('restartButton').addEventListener("click",restart);
  document.getElementById('changeButton').style.visibility='hidden';
  document.getElementById("restartButton").style.visibility = 'hidden';
-document.getElementById("gameOverText").style.visibility = 'hidden';
+ document.getElementById('gameOverText').style.visibility = 'hidden';
  function move(){
    document.getElementById('startButton').style.visibility='hidden';
    document.getElementById('changeButton').style.visibility='visible';
@@ -27,7 +30,7 @@ document.getElementById("gameOverText").style.visibility = 'hidden';
      ctx.clearRect(x-4,53,56,56);
      x+=10;
      ctx.strokeRect(x,57,50,50);
-     if (x>=1185){
+     if (x>=1185||s==1){
        gameOver();
      }
    }, 20);
@@ -37,7 +40,7 @@ document.getElementById("gameOverText").style.visibility = 'hidden';
    ctx.clearRect(x-4,53,56,56);
    x-=10;
    ctx.strokeRect(x,57,50,50);
-   if (x<=260){
+   if (x<=260||s==1){
      gameOver();
    }
  },20);
@@ -61,6 +64,7 @@ document.getElementById("gameOverText").style.visibility = 'hidden';
    if (direction=="right"){
      direction = "left";
      if(x>=lineX){
+       strikeC = 0;
        score++;
        stop();
        ctx.lineWidth = 5;
@@ -68,16 +72,27 @@ document.getElementById("gameOverText").style.visibility = 'hidden';
        ctx.strokeRect(250,50,1000,65);
        randomLine(335,605);
    }
+   else {
+     direction = "right";
+     strikeC++;
+     strikeF(strikeC);
+   }
  }
    else{
      direction = "right";
      if(x<=lineX){
+    strikeC = 0;
      score++;
      stop();
      ctx.clearRect(0, 0, canvas.width, canvas.height);
      ctx.lineWidth = 5;
      ctx.strokeRect(250,50,1000,65);
      randomLine(605,1115);
+     }
+     else{
+       direction = "left";
+       strikeC++;
+       strikeF(strikeC);
      }
    }
    move();
@@ -95,12 +110,13 @@ document.getElementById("gameOverText").style.visibility = 'hidden';
  }
  function gameOver(){
    clearInterval(motion);
-   document.getElementById('gameOverText').style.visibility = "visible";
+   document.getElementById('gameOverText').style.visibility = 'visible';
    document.getElementById('changeButton').style.visibility='hidden'
     document.getElementById("restartButton").style.visibility = 'visible';
  }
  function restart(){
    score-=score;
+   s=0;
    document.getElementById('score').innerHTML = "Score: "+score;
    ctx.clearRect(0, 0, canvas.width, canvas.height);
    ctx.lineWidth = 5;
@@ -115,4 +131,40 @@ document.getElementById("gameOverText").style.visibility = 'hidden';
    document.getElementById('restartButton').style.visibility='hidden';
    document.getElementById("gameOverText").style.visibility = "hidden";
    direction = "right"
+ }
+ function strikeF(strike){
+   if (strike==1){
+     ctx.clearRect(0, 0, canvas.width, canvas.height);
+     ctx.strokeStyle = 'green';
+     ctx.lineWidth = 5;
+     ctx.strokeRect(250,50,1000,65);
+     ctx.lineWidth = 3;
+     ctx.strokeStyle = "red";
+      drawLine(lineX,50,lineX,115);
+      ctx.strokeStyle = "black";
+   }
+   else if (strike==2){
+     ctx.clearRect(0, 0, canvas.width, canvas.height);
+     ctx.strokeStyle = 'yellow';
+     ctx.lineWidth = 5;
+     ctx.strokeRect(250,50,1000,65);
+     ctx.lineWidth = 3;
+     ctx.strokeStyle = "red";
+      drawLine(lineX,50,lineX,115);
+     ctx.strokeStyle = "black";
+   }
+   else if(strike==3) {
+     ctx.clearRect(0, 0, canvas.width, canvas.height);
+     ctx.strokeStyle = 'red';
+     ctx.lineWidth = 5;
+     ctx.strokeRect(250,50,1000,65);
+     ctx.lineWidth = 3;
+     ctx.strokeStyle = "red";
+      drawLine(lineX,50,lineX,115);
+     ctx.strokeStyle = "black";
+   }
+   else{
+     gameOver();
+     s=1;
+   }
  }
