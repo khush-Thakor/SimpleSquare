@@ -1,4 +1,3 @@
 # Game
-Game with Squares and Lines
-Web Link
+JavaScript Game with Squares
 https://khush205.github.io/SquareGame/
