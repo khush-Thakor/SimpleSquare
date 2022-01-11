@@ -1,3 +1,3 @@
 # Game
 JavaScript Game with Squares
-https://khush205.github.io/SimpleSquare/
+https://khush-thakor.github.io/SimpleSquare/
