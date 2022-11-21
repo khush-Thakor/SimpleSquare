@@ -9,7 +9,7 @@ window.onload = function(){
   var lineX = 0;
   var strikeC = 0;
   var s = 0;
-  var speed = 2;
+  var speed = 20;
  
   ctx.lineWidth = 5;
   ctx.strokeRect(250,50,1000,65);
