@@ -120,6 +120,7 @@ window.onload = function(){
   }
   function restart(){
     score-=score;
+    speed = 20
     s=0;
     document.getElementById('score').innerHTML = "Score: "+score;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
