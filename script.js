@@ -79,7 +79,7 @@ window.onload = function(){
       strikeC++;
       strikeF(strikeC);
     }
-    speed-=0.75;
+    speed-=0.05;
     console.log(speed);
   }
     else{
